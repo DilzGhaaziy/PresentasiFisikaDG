@@ -10,6 +10,7 @@
             --glass-bg: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
             --text-color: #ffffff;
+            --text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         body {
@@ -17,6 +18,7 @@
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
+            background-image: linear-gradient(135deg, #00022E 0%, #001252 100%);
             color: var(--text-color);
             display: flex;
             justify-content: center;
@@ -26,7 +28,7 @@
             position: relative;
         }
 
-        /* Latar belakang dekoratif */
+        /* Latar belakang dekoratif (background blur effects) */
         .background-blobs {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -37,7 +39,7 @@
             position: absolute;
             border-radius: 50%;
             filter: blur(80px);
-            opacity: 0.5;
+            opacity: 0.3;
         }
         .blob1 {
             width: 300px; height: 300px;
@@ -69,30 +71,45 @@
             border-radius: 20px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             box-sizing: border-box;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- Panel Profil Diperkecil Lebih Lanjut --- */
+        .profile-section {
+            width: 25%; /* Diperkecil menjadi 25% dari total container */
+            max-width: 200px; /* Batas maksimal lebar panel di PC */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px; /* Padding minimal di sekitar gambar kecil */
+            overflow: hidden;
+            border-radius: 15px; /* Radius sedikit lebih kecil untuk panel kecil */
+        }
+
+        /* --- Gambar Profil Diperkecil TANPA Mengubah Rasio --- */
+        .profile-img {
+            /* Menghapus tinggi tetap dan object-fit: cover */
+            /* Menggunakan max-height untuk memperkecil, dan width: auto agar rasio dipertahankan */
+            max-height: 100px; /* Diperkecil secara signifikan */
+            width: auto; /* Mempertahankan rasio aspek asli */
+            height: auto; /* Memastikan penskalaan tinggi yang benar */
+            display: block;
+            margin: 0 auto; /* Tengah secara horizontal */
+            border-radius: 8px; /* Sedikit radius pada gambar itu sendiri */
+            border: 2px solid var(--glass-border);
         }
 
         /* --- Panel Utama (Video) --- */
         .main-panel {
             width: 100%;
             padding: 30px;
-        }
-
-        /* --- Panel Profil Diperkecil Lagi --- */
-        .profile-section {
-            width: 40%; /* Diperkecil menjadi 40% dari total container */
-            max-width: 220px; /* Batas maksimal lebar panel di PC */
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0;
-            overflow: hidden;
-        }
-
-        .profile-img {
-            width: 100%;
-            height: 100px; /* Disesuaikan agar proporsional dengan lebar panel yang lebih kecil */
-            object-fit: cover;
-            display: block;
+            justify-content: center;
         }
 
         /* --- Tampilan Kartu Video --- */
@@ -103,20 +120,24 @@
             background: rgba(0, 0, 0, 0.25);
             border-radius: 15px;
             overflow: hidden;
-            transition: all 0.3s ease;
             border: 1px solid transparent;
+            width: 100%;
+            max-width: 700px;
         }
 
         .video-card:hover {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid var(--glass-border);
-            transform: translateY(-5px);
         }
 
         .thumbnail-wrapper {
             position: relative;
             width: 45%;
             flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
 
         .video-thumbnail {
@@ -143,7 +164,7 @@
             padding-left: 4px;
             box-sizing: border-box;
             opacity: 0.8;
-            transition: opacity 0.3s;
+            transition: opacity 0.3s, transform 0.3s;
         }
 
         .video-card:hover .play-icon {
@@ -162,6 +183,7 @@
             margin: 0 0 10px 0;
             font-size: 1.2rem;
             line-height: 1.4;
+            text-shadow: var(--text-shadow);
         }
 
         .video-desc {
@@ -178,16 +200,21 @@
             }
             
             .main-panel {
-                padding: 25px 15px;
+                padding: 20px 10px;
             }
 
             /* Di Mobile, panel profil menggunakan ukuran yang nyaman dilihat di layar HP */
             .profile-section {
-                width: 70%; 
+                width: 50%; 
+                max-width: none;
+                padding: 8px;
             }
 
+            /* Gambar profil ponsel juga diperkecil */
             .profile-img {
-                height: 180px;
+                max-height: 80px;
+                width: auto;
+                height: auto;
             }
             
             .video-card {
@@ -227,8 +254,8 @@
                     <div class="play-icon">▶</div>
                 </div>
                 <div class="video-info">
-                    <h3 class="video-title">Tonton Video di YouTube</h3>
-                    <p class="video-desc">Klik kartu ini untuk memutar video (https://youtu.be/ae0OuADASmI) di tab baru.</p>
+                    <h3 class="video-title">Presentasi Fisika Kelompok 7</h3>
+                    <p class="video-desc">Klik ini untuk memutar video (https://youtu.be/ae0OuADASmI).</p>
                 </div>
             </a>
         </main>

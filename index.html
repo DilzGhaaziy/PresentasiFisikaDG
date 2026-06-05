@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+    <style>
+        :root {
+            --bg-color: #00022E;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-color: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Latar belakang dekoratif */
+        .background-blobs {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+        }
+        .blob1 {
+            width: 300px; height: 300px;
+            background: #0044ff;
+            top: -50px; left: -50px;
+        }
+        .blob2 {
+            width: 400px; height: 400px;
+            background: #8800ff;
+            bottom: -100px; right: -50px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Membuat semua panel berada di tengah */
+            gap: 25px;
+            padding: 40px 0;
+        }
+
+        /* Base style untuk semua glass panel */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+        }
+
+        /* --- Panel Utama (Video) mengambil ukuran penuh container --- */
+        .main-panel {
+            width: 100%;
+            padding: 30px;
+        }
+
+        /* --- Panel Profil dibuat lebih kecil dari panel utama --- */
+        .profile-section {
+            width: 60%; /* Mengurangi lebar panel profil agar lebih kecil */
+            max-width: 480px; /* Batas maksimal lebar panel profil di PC */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 280px; /* Sedikit disesuaikan agar proporsional dengan panel yang mengecil */
+            object-fit: cover;
+            display: block;
+        }
+
+        /* --- Tampilan Kartu Video --- */
+        .video-card {
+            display: flex;
+            text-decoration: none;
+            color: var(--text-color);
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .video-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            transform: translateY(-5px);
+        }
+
+        .thumbnail-wrapper {
+            position: relative;
+            width: 45%;
+            flex-shrink: 0;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            padding-left: 4px;
+            box-sizing: border-box;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .video-card:hover .play-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-info {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .video-title {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            line-height: 1.4;
+        }
+
+        .video-desc {
+            margin: 0;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE DESIGN UNTUK MOBILE --- */
+        @media (max-width: 768px) {
+            .container {
+                width: 92%;
+                padding: 20px 0;
+            }
+            
+            .main-panel {
+                padding: 25px 15px;
+            }
+
+            /* Di Mobile, panel profil melebar menyesuaikan layar HP agar tidak kekecilan */
+            .profile-section {
+                width: 85%; 
+            }
+
+            .profile-img {
+                height: 220px;
+            }
+            
+            .video-card {
+                flex-direction: column;
+            }
+            
+            .thumbnail-wrapper {
+                width: 100%;
+                aspect-ratio: 16 / 9;
+            }
+            
+            .video-info {
+                padding: 15px;
+            }
+            
+            .video-title {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+    </div>
+    
+    <div class="container">
+        <header class="glass-panel profile-section">
+            <img src="https://i.ibb.co.com/CpWPvW7G/Screenshot-20260605-123326733-1.jpg" alt="Foto Profil" class="profile-img">
+        </header>
+
+        <main class="glass-panel main-panel">
+            <a href="https://youtu.be/ae0OuADASmI" target="_blank" class="video-card">
+                <div class="thumbnail-wrapper">
+                    <img src="https://img.youtube.com/vi/ae0OuADASmI/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/ae0OuADASmI/hqdefault.jpg'" alt="Thumbnail Video" class="video-thumbnail">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Tonton Video di YouTube</h3>
+                    <p class="video-desc">Klik kartu ini untuk memutar video (https://youtu.be/ae0OuADASmI) di tab baru.</p>
+                </div>
+            </a>
+        </main>
+    </div>
+</body>
+</html>

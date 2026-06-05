@@ -55,7 +55,7 @@
             max-width: 800px;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Membuat semua panel berada di tengah */
+            align-items: center;
             gap: 25px;
             padding: 40px 0;
         }
@@ -71,16 +71,16 @@
             box-sizing: border-box;
         }
 
-        /* --- Panel Utama (Video) mengambil ukuran penuh container --- */
+        /* --- Panel Utama (Video) --- */
         .main-panel {
             width: 100%;
             padding: 30px;
         }
 
-        /* --- Panel Profil dibuat lebih kecil dari panel utama --- */
+        /* --- Panel Profil Diperkecil Lagi --- */
         .profile-section {
-            width: 60%; /* Mengurangi lebar panel profil agar lebih kecil */
-            max-width: 480px; /* Batas maksimal lebar panel profil di PC */
+            width: 40%; /* Diperkecil menjadi 40% dari total container */
+            max-width: 220px; /* Batas maksimal lebar panel di PC */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -90,7 +90,7 @@
 
         .profile-img {
             width: 100%;
-            height: 280px; /* Sedikit disesuaikan agar proporsional dengan panel yang mengecil */
+            height: 100px; /* Disesuaikan agar proporsional dengan lebar panel yang lebih kecil */
             object-fit: cover;
             display: block;
         }
@@ -181,13 +181,13 @@
                 padding: 25px 15px;
             }
 
-            /* Di Mobile, panel profil melebar menyesuaikan layar HP agar tidak kekecilan */
+            /* Di Mobile, panel profil menggunakan ukuran yang nyaman dilihat di layar HP */
             .profile-section {
-                width: 85%; 
+                width: 70%; 
             }
 
             .profile-img {
-                height: 220px;
+                height: 180px;
             }
             
             .video-card {
